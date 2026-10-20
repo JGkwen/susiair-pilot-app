@@ -1,5 +1,7 @@
 export interface FlightHoursFile {
   pilot: { name: string; totalFlightHours?: number; avatarUrl?: string };
+  limits?: Partial<Record<string, number>>;
+  chartBounds?: Partial<Record<string, { limit?: number; max?: number }>>;
   flightHours: { date: string; hours: number }[];
 }
 

@@ -7,7 +7,10 @@ import { CommonModule } from './common/common.module';
 import { HttpExceptionFilter } from './common/http-exception.filter';
 import { JwtAuthGuard } from './common/jwt-auth.guard';
 import { DataModule } from './data/data.module';
+import { DocumentsModule } from './documents/documents.module';
+import { FlightHoursModule } from './flight-hours/flight-hours.module';
 import { PilotModule } from './pilot/pilot.module';
+import { SchedulesModule } from './schedules/schedules.module';
 
 @Module({
   imports: [
@@ -16,6 +19,9 @@ import { PilotModule } from './pilot/pilot.module';
     DataModule,
     AuthModule,
     PilotModule,
+    FlightHoursModule,
+    DocumentsModule,
+    SchedulesModule,
   ],
   controllers: [AppController],
   providers: [

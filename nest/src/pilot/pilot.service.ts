@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ClockService } from '../common/clock.service';
+import { roundToOneDecimal } from '../common/number.utils';
 import { DataService } from '../data/data.service';
 import { PilotProfileDto } from './dto/pilot-profile.dto';
 
@@ -23,7 +24,7 @@ export class PilotService {
 
     return {
       name: pilot.name,
-      totalFlightHours: Math.round(total * 10) / 10,
+      totalFlightHours: roundToOneDecimal(total),
       avatarUrl: pilot.avatarUrl ?? AVATAR_PLACEHOLDER,
       asOf: today,
     };

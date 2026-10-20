@@ -15,13 +15,22 @@ export class DataService {
   readonly schedules = readJson<SchedulesFile>('mock-schedules.json');
 
   constructor() {
-    const { pilot, flightHours } = this.flightHours;
+    const { pilot, limits, chartBounds, flightHours } = this.flightHours;
     check(
       typeof pilot?.name === 'string' &&
         (pilot.totalFlightHours === undefined ||
           Number.isFinite(pilot.totalFlightHours)) &&
         (pilot.avatarUrl === undefined || typeof pilot.avatarUrl === 'string'),
       'mock-flight-hours.json: pilot must be { name, totalFlightHours?, avatarUrl? }',
+    );
+    check(
+      Object.values(limits ?? {}).every(isPositiveNumber) &&
+        Object.values(chartBounds ?? {}).every(
+          (bounds) =>
+            isOptionalPositiveNumber(bounds?.limit) &&
+            isOptionalPositiveNumber(bounds?.max),
+        ),
+      'mock-flight-hours.json: limits and chartBounds limit/max must be positive numbers',
     );
     check(
       Array.isArray(flightHours) &&
@@ -87,6 +96,14 @@ function readJson<T>(file: string): T {
       `Data file ${path} is not valid JSON: ${(error as Error).message}`,
     );
   }
+}
+
+function isPositiveNumber(value: unknown): boolean {
+  return typeof value === 'number' && Number.isFinite(value) && value > 0;
+}
+
+function isOptionalPositiveNumber(value: unknown): boolean {
+  return value === undefined || isPositiveNumber(value);
 }
 
 function check(condition: boolean, message: string): void {
