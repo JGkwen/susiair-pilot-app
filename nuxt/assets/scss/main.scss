@@ -32,3 +32,15 @@ p {
   outline: 2px solid $color-chart-accent;
   outline-offset: 2px;
 }
+
+.skeleton {
+  background: $color-border;
+  border-radius: $radius-card;
+  animation: skeleton-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-pulse {
+  to {
+    opacity: 0.4;
+  }
+}
