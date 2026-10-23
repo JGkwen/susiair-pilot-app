@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ title: 'Home' })
+
 const home = useHomeStore()
 
 onMounted(home.loadAll)

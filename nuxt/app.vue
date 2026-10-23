@@ -1,3 +1,7 @@
+<script setup lang="ts">
+useHead({ titleTemplate: title => (title ? `${title} · Susi Air Pilot` : 'Susi Air Pilot') })
+</script>
+
 <template>
   <div class="app-shell">
     <NuxtRouteAnnouncer />

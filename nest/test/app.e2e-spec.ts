@@ -114,6 +114,15 @@ describe('API (e2e)', () => {
     expect(points[7]).toMatchObject({ date: asOf, isFuture: false });
   });
 
+  it.each(['5', '05'])(
+    'GET /schedules accepts month=%s for May 2026',
+    async (month) => {
+      const res = await getWithToken(`/schedules?year=2026&month=${month}`);
+      expect(res.status).toBe(200);
+      expect(res.body).toMatchObject({ year: 2026, month: 5 });
+    },
+  );
+
   it('GET /flight-hours/summary rejects an unknown range with 400', async () => {
     const res = await getWithToken('/flight-hours/summary?range=2w');
     expect(res.status).toBe(400);

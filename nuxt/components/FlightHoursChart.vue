@@ -223,7 +223,7 @@ const description = computed(() => {
   opacity: 0.6;
 }
 
-.chart__day--future {
+.chart__day--future :is(.chart__point, .chart__clamp-marker) {
   opacity: 0.5;
 }
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
+useHead({ title: 'Sign In' })
 
 const auth = useAuthStore()
 const username = ref('')

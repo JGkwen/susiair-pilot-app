@@ -29,7 +29,7 @@ p {
 }
 
 :focus-visible {
-  outline: 2px solid $color-chart-accent;
+  outline: 2px solid $color-navy;
   outline-offset: 2px;
 }
 
@@ -37,6 +37,12 @@ p {
   background: $color-border;
   border-radius: $radius-card;
   animation: skeleton-pulse 1s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
 }
 
 @keyframes skeleton-pulse {
